@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 const port = 3000;
 
 app.post('/sample-topic', (req, res) => {
-    console.log("Hello World 123!");
+    console.log("Order message received!");
     console.log(req.body);
     res.status(200).send();
 });
