@@ -26,11 +26,13 @@ jobs:
             docker build ./bindings/pythonapp -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/bindings-pythonapp:v1
             docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/bindings-pythonapp:v1
 
+        # Set the target AKS cluster.
         - name: Kubernetes set context
-          uses: Azure/k8s-set-context@v1
+        - uses: Azure/aks-set-context@v1
           with:
-            kubeconfig: ${{ secrets.KUBECONFIG }}
-            context: myAKSCluster
+            creds: '${{ secrets.AZURE_CREDENTIALS }}'
+            cluster-name: myAKSCluster
+            resource-group: ccunit2
             
         - name: 'Deploy to AKS'
           uses: Azure/k8s-deploy@v1.2
