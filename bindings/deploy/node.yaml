@@ -36,7 +36,7 @@ spec:
     spec:
       containers:
       - name: node
-        image: docker.io/dapriosamples/bindings-nodeapp:edge
+        image: daprtestacr.azurecr.io/bindings-nodeapp:v1
         ports:
         - containerPort: 3000
         imagePullPolicy: Always
