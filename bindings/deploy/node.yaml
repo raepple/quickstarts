@@ -36,7 +36,7 @@ spec:
     spec:
       containers:
       - name: node
-        image: daprtestacr.azurecr.io/bindings-nodeapp:v1
+        image: daprtestacr.azurecr.io/bindings-nodeapp
         ports:
         - containerPort: 3000
         imagePullPolicy: Always

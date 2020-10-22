@@ -19,4 +19,4 @@ spec:
     spec:
       containers:
       - name: python
-        image: daprtestacr.azurecr.io/bindings-pythonapp:v1
+        image: daprtestacr.azurecr.io/bindings-pythonapp

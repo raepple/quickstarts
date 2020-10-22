@@ -21,10 +21,10 @@ jobs:
             username: ${{ secrets.REGISTRY_USERNAME }}
             password: ${{ secrets.REGISTRY_PASSWORD }}
         - run: |
-            docker build ./bindings/nodeapp -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/bindings-nodeapp:v1
-            docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/bindings-nodeapp:v1
-            docker build ./bindings/pythonapp -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/bindings-pythonapp:v1
-            docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/bindings-pythonapp:v1
+            docker build ./bindings/nodeapp -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/bindings-nodeapp:${{ github.sha }}
+            docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/bindings-nodeapp:${{ github.sha }}
+            docker build ./bindings/pythonapp -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/bindings-pythonapp:${{ github.sha }}
+            docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/bindings-pythonapp:${{ github.sha }}
 
         # Set the target AKS cluster.
         - name: Kubernetes set context
@@ -41,3 +41,7 @@ jobs:
                 ./bindings/deploy/kafka_bindings.yaml
                 ./bindings/deploy/node.yaml
                 ./bindings/deploy/python.yaml
+              images: |
+                ${{ secrets.REGISTRY_LOGIN_SERVER }}/bindings-nodeapp:${{ github.sha }}
+                ${{ secrets.REGISTRY_LOGIN_SERVER }}/bindings-pythonapp:${{ github.sha }}
+
