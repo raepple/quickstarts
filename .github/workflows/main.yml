@@ -25,6 +25,11 @@ jobs:
             docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/bindings-nodeapp:v1
             docker build ./bindings/pythonapp -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/bindings-pythonapp:v1
             docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/bindings-pythonapp:v1
+
+        - name: Kubernetes set context
+          uses: Azure/k8s-set-context@v1
+          with:
+            kubeconfig: ${{ secrets.KUBECONFIG }}
             
         - name: 'Deploy to AKS'
           uses: Azure/k8s-deploy@v1.2
