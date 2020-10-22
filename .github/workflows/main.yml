@@ -23,3 +23,5 @@ jobs:
         - run: |
             docker build ./bindings/nodeapp -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/bindings-nodeapp:v1
             docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/bindings-nodeapp:v1
+            docker build ./bindings/pythonapp -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/bindings-pythonapp:v1
+            docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/bindings-pythonapp:v1
